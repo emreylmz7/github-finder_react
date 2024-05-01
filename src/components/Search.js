@@ -1,55 +1,40 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 
-export class Search extends Component {
+const Search = ({displayAlert, search, showClearButton, clearResults}) => {
 
-    constructor(props) {
-      super(props)
-    
-      this.state = {
-        keyword:''
-      }
-    }
+    const [keyword,setKeyword] = useState('');
 
-    onChange = (e) => {
-        this.setState({
-            keyword: e.target.value
-        })
+    const onChange = (e) => {
+        setKeyword(e.target.value);
     }   
 
-    onSubmit = (e) => {
+    const onSubmit = (e) => {
         e.preventDefault();
 
-        if (this.state.keyword === '') {
-            this.props.displayAlert( 'Please Enter the Keyword','danger')
+        if (keyword === '') {
+            displayAlert( 'Please Enter the Keyword','danger');
         }
         else{
-            this.props.search(this.state.keyword);
-            this.setState({
-                keyword: ''
-            });
+            search(keyword);
+            setKeyword('');
         }
-
-        
     }
 
-    render() {
-        return (
+    return (
         <div className="container my-3">
-            <form onSubmit={this.onSubmit}>
+            <form onSubmit={onSubmit}>
                 <div className="input-group">   
-                    <input type="text" value={this.state.keyword} onChange={this.onChange} className='form-control' placeholder='keyword' />
+                    <input type="text" value={keyword} onChange={onChange} className='form-control' placeholder='keyword' />
                     <button className="btn btn-primary" type="submit" >Search</button>
                 </div>
             </form>
 
             {
-                this.props.showClearButton && <button onClick={this.props.clearResults} className='btn btn-outline-danger mt-2 btn-block' >Clean Results</button>
+                showClearButton && <button onClick={clearResults} className='btn btn-outline-danger mt-2 btn-block' >Clean Results</button>
             }
 
         </div>
-
-        )
-    }
+    )
 }
 
 export default Search
