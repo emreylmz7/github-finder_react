@@ -7,9 +7,6 @@ import UsersContextProvider from './context/usersContext';
 import AlertContextProvider from './context/alertContext';
 
 const App = () => {
-
-  
-
   return (
     <UsersContextProvider>
       <AlertContextProvider>
@@ -21,7 +18,7 @@ const App = () => {
         </div>
       </AlertContextProvider>
     </UsersContextProvider>
-    )
+  )
 }
 
 export default App

@@ -4,15 +4,13 @@ import { AlertContext } from '../context/alertContext'
 const Alert = () => {
   const { error } = useContext(AlertContext);
   return (
-    error != null && (
+    error !== null && (
         <div className="container">
-            <div className = {`alert alert-${error.type}`} role="alert">
-                {error.msg}
+            <div className={`alert alert-${error.type}`}>
+                { error.msg }
             </div>
         </div>
-        
     )
-    
   )
 }
 
